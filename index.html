@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ポートフォリオ | 現場DXプロフェッショナル</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap');
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f8f9fa;
+            color: #343a40;
+        }
+        .hero-bg {
+            /* より高品質な背景画像に変更 */
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1529603228-563311516830?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .section-title {
+            border-bottom: 3px solid #0d9488; /* Teal-600 */
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -31px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #0d9488;
+            border: 3px solid #f8f9fa;
+        }
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        /* スクロールアニメーション */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- ヘッダー -->
+    <header class="bg-white/80 backdrop-blur-md shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="text-2xl font-bold text-gray-800">My Portfolio</div>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="#about" class="text-gray-600 hover:text-teal-600 transition">私について</a>
+                <a href="#skills" class="text-gray-600 hover:text-teal-600 transition">スキル</a>
+                <a href="#projects" class="text-gray-600 hover:text-teal-600 transition">実績</a>
+                <a href="#career" class="text-gray-600 hover:text-teal-600 transition">経歴</a>
+                <a href="#contact" class="bg-teal-600 text-white py-2 px-4 rounded-lg hover:bg-teal-700 transition">お問い合わせ</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-800 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="#about" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">私について</a>
+            <a href="#skills" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">スキル</a>
+            <a href="#projects" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">実績</a>
+            <a href="#career" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">経歴</a>
+            <a href="#contact" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">お問い合わせ</a>
+        </div>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main>
+        <!-- ヒーローセクション -->
+        <section class="hero-bg text-white h-[70vh] flex items-center justify-center">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-6xl font-bold mb-4 leading-tight">
+                    現場の痛みを知る、<br>
+                    <span class="text-teal-400">DXのプロフェッショナル</span>
+                </h1>
+                <p class="text-lg md:text-2xl mb-8">製造・物流の最前線から、業務改善をリードします。</p>
+                <a href="#projects" class="bg-teal-600 text-white py-3 px-8 rounded-full text-lg font-bold hover:bg-teal-700 transition transform hover:scale-105 shadow-lg">実績を見る</a>
+            </div>
+        </section>
+
+        <!-- 私について -->
+        <section id="about" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold mb-4 section-title inline-block">私について</h2>
+                    <p class="text-gray-600 mb-12">About Me</p>
+                </div>
+                <div class="max-w-4xl mx-auto fade-in">
+                    <h3 class="text-2xl font-bold mb-4 text-gray-800 text-center">製造現場のオペレーターから、ITによる課題解決の道へ</h3>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        高校卒業後、製造業の最前線で約13年間、オペレーターと生産管理を経験しました。そこでは、日々繰り返される非効率な手作業、伝達ミス、長時間労働といった「現場の痛み」を肌で感じてきました。「この状況を何とかしたい」その一心で独学でプログラミングを学び、VBAで初めて業務ツールを開発。自分の作ったもので同僚の負担が劇的に減った時の喜びが、私の原点です。
+                    </p>
+                    <p class="text-gray-700 leading-relaxed mb-4">
+                        現職では作業責任者として、ITスキルと現場経験を融合させ、<strong class="text-teal-700">月間330時間以上の業務効率化</strong>や<strong class="text-teal-700">誤出荷ゼロ記録を3年まで更新</strong>するなどの成果を上げてきました。
+                    </p>
+                     <p class="text-gray-700 leading-relaxed">
+                        私のマネジメントスタイルは、目標達成に向けた論理的な課題解決を得意とする一方、当初は規律を重視しすぎる面がありました。しかし、多様なパートさん達と向き合う中で、一人ひとりの声に耳を傾け、対話を重ねることの重要性を学びました。今では、現場の知恵とITの力を掛け合わせ、チーム全員で成果を出すことに最大のやりがいを感じています。
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 私の信条 -->
+        <section id="philosophy" class="py-20">
+            <div class="container mx-auto px-6">
+                 <div class="text-center">
+                    <h2 class="text-3xl font-bold mb-4 section-title inline-block">私の信条</h2>
+                    <p class="text-gray-600 mb-12">My Philosophy</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- 信条1 -->
+                    <div class="bg-white p-6 rounded-lg shadow-lg text-center card-hover fade-in">
+                        <svg class="w-16 h-16 mx-auto mb-4 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                        <h3 class="text-xl font-bold mb-2">現場第一主義</h3>
+                        <p class="text-gray-600">答えは常に現場にある。机上の空論ではなく、現場の声を聞き、共に解決策を見つけ出すことを最も重視します。</p>
+                    </div>
+                    <!-- 信条2 -->
+                    <div class="bg-white p-6 rounded-lg shadow-lg text-center card-hover fade-in">
+                        <svg class="w-16 h-16 mx-auto mb-4 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+                        <h3 class="text-xl font-bold mb-2">データに基づく改善</h3>
+                        <p class="text-gray-600">勘や経験だけに頼らず、収集したデータを論理的に分析し、客観的な事実に基づいて改善策を立案・実行します。</p>
+                    </div>
+                    <!-- 信条3 -->
+                    <div class="bg-white p-6 rounded-lg shadow-lg text-center card-hover fade-in">
+                        <svg class="w-16 h-16 mx-auto mb-4 text-teal-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.834 9.168-4.432l.256-.528A2.25 2.25 0 0121.5 2.92V10a2.25 2.25 0 01-2.25 2.25H15M7.544 13.683l-2.147 6.15A1.76 1.76 0 013.583 21H9.757a1.76 1.76 0 011.662-1.168l2.147-6.15m0 0h-5.698"></path></svg>
+                        <h3 class="text-xl font-bold mb-2">テクノロジーは人のために</h3>
+                        <p class="text-gray-600">ITやAIはあくまで道具。使う人々の負担を減らし、創造性を引き出すためにテクノロジーを活用します。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- スキル -->
+        <section id="skills" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold mb-4 section-title inline-block">スキル</h2>
+                    <p class="text-gray-600 mb-12">My Skills</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- マネジメント＆改善 -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-lg card-hover fade-in">
+                        <h3 class="text-xl font-bold mb-4 text-teal-700">マネジメント & 現場改善</h3>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start"><svg class="w-5 h-5 mr-2 text-teal-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>チームマネジメント (20名規模)</li>
+                            <li class="flex items-start"><svg class="w-5 h-5 mr-2 text-teal-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>生産管理・品質管理・安全衛生管理</li>
+                            <li class="flex items-start"><svg class="w-5 h-5 mr-2 text-teal-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>5S, なぜなぜ分析による業務改善</li>
+                            <li class="flex items-start"><svg class="w-5 h-5 mr-2 text-teal-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>DX推進・企画立案</li>
+                        </ul>
+                    </div>
+                    <!-- IT & プログラミング -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-lg card-hover fade-in">
+                        <h3 class="text-xl font-bold mb-4 text-teal-700">IT & プログラミング</h3>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start"><svg class="w-5 h-5 mr-2 text-teal-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>Excel VBA (業務ツール開発)</li>
+                            <li class="flex items-start"><svg class="w-5 h-5 mr-2 text-teal-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>Python (PC自動化, データ集計)</li>
+                            <li class="flex items-start"><svg class="w-5 h-5 mr-2 text-teal-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>HTML / CSS / JavaScript (Webアプリ開発)</li>
+                            <li class="flex items-start"><svg class="w-5 h-5 mr-2 text-teal-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>SQL (基本的なデータ抽出)</li>
+                        </ul>
+                    </div>
+                    <!-- AI & 自動化 -->
+                    <div class="bg-gray-50 p-6 rounded-lg shadow-lg card-hover fade-in">
+                        <h3 class="text-xl font-bold mb-4 text-teal-700">AI & 自動化</h3>
+                        <ul class="space-y-3 text-gray-700">
+                            <li class="flex items-start"><svg class="w-5 h-5 mr-2 text-teal-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>プロンプトエンジニアリング (YAML形式)</li>
+                            <li class="flex items-start"><svg class="w-5 h-5 mr-2 text-teal-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>Gemini, ChatGPT等を活用した開発</li>
+                            <li class="flex items-start"><svg class="w-5 h-5 mr-2 text-teal-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>Gemini CLIによるドキュメント自動化</li>
+                            <li class="flex items-start"><svg class="w-5 h-5 mr-2 text-teal-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>AIを活用したシステム設計</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 実績 -->
+        <section id="projects" class="py-20">
+            <div class="container mx-auto px-6">
+                 <div class="text-center">
+                    <h2 class="text-3xl font-bold mb-4 section-title inline-block">実績</h2>
+                    <p class="text-gray-600 mb-12">Projects</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- 実績1 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover fade-in">
+                        <img src="https://placehold.co/600x400/34d399/ffffff?text=Excel+VBA" alt="プロジェクト画像" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">事務作業自動化による効率化</h3>
+                            <p class="text-gray-600 mb-4">VBAとPythonを駆使し、勤怠管理や作業計画作成などの定型業務を自動化。</p>
+                            <div class="text-center">
+                                <span class="inline-block bg-teal-100 text-teal-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded-full">VBA</span>
+                                <span class="inline-block bg-teal-100 text-teal-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded-full">Python</span>
+                            </div>
+                             <button onclick="openModal('modal1')" class="mt-4 w-full bg-teal-600 text-white py-2 rounded-lg hover:bg-teal-700 transition">詳細を見る</button>
+                        </div>
+                    </div>
+                    <!-- 実績2 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover fade-in">
+                        <img src="https://placehold.co/600x400/fbbf24/ffffff?text=Warehouse" alt="プロジェクト画像" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">現場改善による生産性向上</h3>
+                            <p class="text-gray-600 mb-4">導線最適化や5S活動を主導し、物理的な作業環境を改善。誤出荷ゼロを達成。</p>
+                             <div class="text-center">
+                                <span class="inline-block bg-amber-100 text-amber-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded-full">5S</span>
+                                <span class="inline-block bg-amber-100 text-amber-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded-full">業務改善</span>
+                            </div>
+                            <button onclick="openModal('modal2')" class="mt-4 w-full bg-teal-600 text-white py-2 rounded-lg hover:bg-teal-700 transition">詳細を見る</button>
+                        </div>
+                    </div>
+                    <!-- 実績3 -->
+                    <div class="bg-white rounded-lg shadow-lg overflow-hidden card-hover fade-in">
+                        <img src="https://placehold.co/600x400/60a5fa/ffffff?text=Web+App" alt="プロジェクト画像" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold mb-2">同僚向け業務支援アプリ開発</h3>
+                            <p class="text-gray-600 mb-4">複数人の同僚の作業をヒアリングし、専用のWebアプリやツールを開発・提供。</p>
+                            <div class="text-center">
+                                <span class="inline-block bg-blue-100 text-blue-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded-full">HTML/CSS</span>
+                                <span class="inline-block bg-blue-100 text-blue-800 text-sm font-semibold mr-2 px-2.5 py-0.5 rounded-full">JavaScript</span>
+                            </div>
+                           <button onclick="openModal('modal3')" class="mt-4 w-full bg-teal-600 text-white py-2 rounded-lg hover:bg-teal-700 transition">詳細を見る</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 経歴 -->
+        <section id="career" class="py-20 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold mb-4 section-title inline-block">経歴</h2>
+                    <p class="text-gray-600 mb-12">Career Path</p>
+                </div>
+                <div class="relative border-l-2 border-teal-600 ml-4 sm:ml-6 md:ml-8 fade-in max-w-3xl mx-auto">
+                    <!-- 項目1 -->
+                    <div class="mb-8 pl-8 md:pl-12 relative timeline-item">
+                        <h3 class="text-xl font-bold">株式会社 鈴与カーゴサービス静岡 - 作業責任者</h3>
+                        <p class="text-gray-500">2022年9月 - 現在</p>
+                        <p class="mt-2 text-gray-700">パート20名のマネジメントと現場全体のDX推進を担当。ITと現場改善の両輪で、生産性・品質・安全性を大幅に向上。</p>
+                    </div>
+                    <!-- 項目2 -->
+                    <div class="mb-8 pl-8 md:pl-12 relative timeline-item">
+                        <h3 class="text-xl font-bold">株式会社 鈴与カーゴサービス静岡 - フォークリフトオペレーター</h3>
+                        <p class="text-gray-500">2018年8月 - 2022年8月</p>
+                        <p class="mt-2 text-gray-700">現場オペレーターとして業務に従事する傍ら、独学でプログラミングを習得し、現場の課題解決に着手。</p>
+                    </div>
+                    <!-- 項目3 -->
+                    <div class="mb-8 pl-8 md:pl-12 relative timeline-item">
+                        <h3 class="text-xl font-bold">有限会社 稲葉工業所 - 生産管理 / 製造オペレーター</h3>
+                        <p class="text-gray-500">2005年4月 - 2018年7月</p>
+                        <p class="mt-2 text-gray-700">アルミニウム加工の全工程と生産管理を経験。ものづくりの基礎と、現場が抱える課題を深く理解。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- お問い合わせ -->
+        <section id="contact" class="py-20 bg-gray-800 text-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold mb-4">お問い合わせ</h2>
+                <p class="text-gray-300 mb-8">ご興味を持っていただけましたら、お気軽にご連絡ください。</p>
+                <a href="mailto:your-email@example.com" class="bg-teal-600 text-white py-3 px-8 rounded-full text-lg font-bold hover:bg-teal-700 transition inline-block shadow-lg">メールを送る</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- フッター -->
+    <footer class="bg-gray-900 text-white py-4">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 Your Name. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- モーダルウィンドウ -->
+    <div id="modal1" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-2xl max-h-full overflow-y-auto p-8 relative">
+            <button onclick="closeModal('modal1')" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-3xl">&times;</button>
+            <h2 class="text-2xl font-bold mb-4 text-teal-700">実績詳細：事務作業自動化による効率化</h2>
+            <div class="space-y-4 text-gray-700">
+                <p><strong>【課題】</strong>勤怠管理や作業計画作成、日報作成といった事務作業が手作業中心で、毎日5時間以上を要していました。属人化も進み、担当者不在時の業務停滞が問題でした。</p>
+                <p><strong>【解決策】</strong>Excel VBAを用いて、勤怠データからシフト表や作業計画を半自動生成するツールを開発。また、Pythonスクリプトで各種データを自動集計し、報告書フォーマットに出力する仕組みを構築しました。</p>
+                <p><strong>【工夫した点】</strong>PC操作に不慣れな人でも直感的に使えるよう、シンプルなUIを心がけました。また、AI(Gemini API)を組み込み、作業報告の要約文を自動生成する機能を実装し、報告書作成の手間をさらに削減しました。</p>
+                <p class="font-bold text-lg"><strong>【成果】</strong><span class="text-teal-600">PC作業時間を月間合計120時間以上削減</span>し、担当者が本来注力すべき管理業務に集中できる環境を構築しました。</p>
+            </div>
+        </div>
+    </div>
+    <div id="modal2" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-2xl max-h-full overflow-y-auto p-8 relative">
+            <button onclick="closeModal('modal2')" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-3xl">&times;</button>
+            <h2 class="text-2xl font-bold mb-4 text-amber-700">実績詳細：現場改善による生産性向上</h2>
+            <div class="space-y-4 text-gray-700">
+                <p><strong>【課題】</strong>倉庫内のレイアウトや作業動線に無駄が多く、ピッキング作業に時間がかかっていました。また、整理整頓のルールが曖昧で、誤出荷のリスクが高い状態でした。</p>
+                <p><strong>【解決策】</strong>まず、パートさん全員と面談し、日々の作業で感じている問題点を徹底的にヒアリング。その声を基に、出荷頻度の高い商品を入り口近くに配置するレイアウト変更や、一方通行の動線ルールを策定。また、5S活動をチームの文化として定着させました。</p>
+                <p><strong>【工夫した点】</strong>トップダウンで変更を押し付けるのではなく、改善案をチームで議論し、全員が納得した上で実行するプロセスを重視しました。これにより、やらされ感ではなく、主体的な改善活動へと繋がりました。</p>
+                <p class="font-bold text-lg"><strong>【成果】</strong><span class="text-amber-600">現場作業時間を月間160時間以上削減</span>。さらに、<span class="text-amber-600">誤出荷ゼロの連続記録を6ヶ月から3年に大幅更新</span>し、品質と安全性の両面で大きな成果を上げました。</p>
+            </div>
+        </div>
+    </div>
+    <div id="modal3" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 p-4">
+        <div class="bg-white rounded-lg shadow-2xl w-full max-w-2xl max-h-full overflow-y-auto p-8 relative">
+            <button onclick="closeModal('modal3')" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-3xl">&times;</button>
+            <h2 class="text-2xl font-bold mb-4 text-blue-700">実績詳細：同僚向け業務支援アプリ開発</h2>
+            <div class="space-y-4 text-gray-700">
+                <p><strong>【課題】</strong>自分以外の同僚も、それぞれが担当する荷主特有の複雑な手作業や管理業務に多くの時間を費やしていました。</p>
+                <p><strong>【解決策】</strong>同僚一人ひとりの業務内容をヒアリングし、課題を特定。それぞれの業務に特化したVBAツールや、ブラウザで簡単に使えるWebアプリケーション（HTML/CSS/JavaScript）を複数開発し、提供しました。</p>
+                <p><strong>【工夫した点】</strong>開発にあたり、AI（ChatGPT/Gemini）をペアプログラマーとして活用。コーディングやデバッグの時間を大幅に短縮し、短期間で複数のツールを開発することに成功しました。</p>
+                <p class="font-bold text-lg"><strong>【成果】</strong><span class="text-blue-600">同僚たちのPC作業時間を合計で月間50時間以上削減</span>し、チーム全体の生産性向上に貢献しました。</p>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // モバイルメニューのトグル
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // スクロールアニメーション
+        const faders = document.querySelectorAll('.fade-in');
+        const appearOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('visible');
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+        
+        // モーダル
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.remove('hidden');
+            document.getElementById(modalId).classList.add('flex');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.add('hidden');
+            document.getElementById(modalId).classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
+        
+        // モーダルの外側クリックで閉じる
+        window.onclick = function(event) {
+            if (event.target.classList.contains('fixed')) {
+                const modals = document.querySelectorAll('.fixed');
+                modals.forEach(modal => {
+                    if(!modal.classList.contains('hidden')) {
+                        closeModal(modal.id);
+                    }
+                });
+            }
+        }
+
+    </script>
+</body>
+</html>
